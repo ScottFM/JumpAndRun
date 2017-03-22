@@ -4,17 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-
-import static android.R.attr.delay;
-import static android.R.attr.layout;
-import static com.example.scott.jumpandrun.R.drawable.ball;
 
 /**
  * Created by Scott on 3/14/2017.
