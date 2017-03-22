@@ -22,17 +22,20 @@ import static com.example.scott.jumpandrun.R.drawable.ball;
 
 public class Ball extends View{
 
-    private int y;
-    private int x;
+    private float y;
+    private float x;
 
     private int maxX;
     private int maxY;
     private int minX;
     private int minY;
 
-    int yVelocity;
+    private boolean up = false;
+    private boolean down = false;
+
+    private float yVelocity;
     private Handler refreshHandler = new Handler();
-    private long delay = 20;
+    private long delay = 10;
 
     public Ball(Context context) {
         super(context);
@@ -50,12 +53,12 @@ public class Ball extends View{
     }
 
     public void initializeBall() {
-        maxX= 1200;
-        //maxY = 3000;
+        maxX= 1000;
+        maxY = 3400;
         minX = 0;
         minY= 0;
-        x = (maxX+minX) /2;
-        y = 1800;
+        x = 400;
+        y = (maxY + minY)/2;
         this.yVelocity = 0;
 
        // FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(250, 250);
@@ -83,27 +86,42 @@ public class Ball extends View{
         }};
 
     public void startJump() {
-        yVelocity = -50;
+        if (!down && !up) {
+            yVelocity = -50;
+            up = true;
+        }
     }
 
     public void move() {
-        if (yVelocity != 0) {
-            if (yVelocity < -2){
-                yVelocity*=0.95;
-                this.y = y+yVelocity;
-                setY(y);
+        if (up || down) {
+            if (up){
+                if (!(yVelocity < 0 && yVelocity >= -2)) {
+                    yVelocity*=0.92;
+                    this.y = y+yVelocity;
+                    setY(y);
+                }
+                else {
+                    yVelocity*=-1;
+                    up = false;
+                    down = true;
+                }
             }
-            else if (yVelocity < 0 && yVelocity >= -2) {
-                yVelocity*=-1;
-                setY(y);
-            }
-            else if (yVelocity >= 0 && yVelocity < 50) {
-                yVelocity*=1.5;
-                this.y = y+yVelocity;
-                setY(y);
-            }
-            else if (yVelocity >= 50) {
-                yVelocity=0;
+
+            if (down) {
+                if (yVelocity < 50) {
+                    if(!(y+(yVelocity*(1/.92)) > 1700)) {
+                        yVelocity *= 1/.92;
+                        this.y = y+yVelocity;
+                        setY(y);
+                        //invalidate();
+                    }
+                     else {
+                        setY(1800);
+                        yVelocity = 0;
+                        down = false;
+                    }
+
+                }
             }
 
         }
