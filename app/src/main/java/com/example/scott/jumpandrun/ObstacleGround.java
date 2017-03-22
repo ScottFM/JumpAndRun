@@ -37,7 +37,7 @@ public class ObstacleGround extends View {
 
     public void initializeView() {
 
-        x = 1400;
+        x = 2400;
         y = 1700;
         this.xVelocity = -10;
 
@@ -50,7 +50,7 @@ public class ObstacleGround extends View {
         //need to include code for upping the score when x hits certain value
         //probably need a function to get next value to account for collisions
 
-        if (!(x + xVelocity < -1500)) {
+        if (!(x + xVelocity < -600)) {
             x = x + xVelocity;
             setX(x);
         }
