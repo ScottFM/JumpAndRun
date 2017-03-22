@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 /**
  * Created by Scott on 3/21/2017.
@@ -35,33 +36,45 @@ public class ObstacleGround extends View {
     }
 
     public void initializeView() {
+
         x = 1400;
         y = 1700;
         this.xVelocity = -10;
 
         setBackgroundResource(R.drawable.greenrectangle);
-        refreshHandler.post(update);
+        //refreshHandler.post(update);
     }
-
-    private Runnable update = new Runnable(){       //"listener" for an abstract function
-        @Override                                   //This thread runs its own alternate execution path
-        public void run(){
-            move();
-            invalidate();
-            refreshHandler.postDelayed(update, delay);
-        }};
 
     public void move() {
 
         //need to include code for upping the score when x hits certain value
         //probably need a function to get next value to account for collisions
 
-        if (!(x + xVelocity < -300)) {
+        if (!(x + xVelocity < -1500)) {
             x = x + xVelocity;
             setX(x);
         }
         else {
-            //needs to delete the old ones.
+            x = 1800;
+            setX(x);
         }
+    }
+
+    @Override
+    public float getX() {
+        return x;
+    }
+
+    @Override
+    public float getY() {
+        return y;
+    }
+
+    public float getCornerX() {
+        return (this.getX()+250);
+    }
+
+    public float getCornerY() {
+        return (this.getY()+200);
     }
 }
