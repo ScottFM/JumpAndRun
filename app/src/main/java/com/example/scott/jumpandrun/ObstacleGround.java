@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.Random;
+
 /**
  * Created by Scott on 3/21/2017.
  */
@@ -37,7 +39,7 @@ public class ObstacleGround extends View {
 
     public void initializeView() {
 
-        x = 2400;
+        x = 2000;
         y = 1700;
         this.xVelocity = -10;
 
@@ -46,18 +48,13 @@ public class ObstacleGround extends View {
     }
 
     public void move() {
+        x = x + xVelocity;
+        setX(x);
 
-        //need to include code for upping the score when x hits certain value
-        //probably need a function to get next value to account for collisions
+    }
 
-        if (!(x + xVelocity < -600)) {
-            x = x + xVelocity;
-            setX(x);
-        }
-        else {
-            x = 1800;
-            setX(x);
-        }
+    public void setxVelocity(int xv) {
+        this.xVelocity = xv;
     }
 
     @Override
@@ -71,10 +68,31 @@ public class ObstacleGround extends View {
     }
 
     public float getCornerX() {
-        return (this.getX()+250);
+        return (this.getX() + 250);
     }
 
     public float getCornerY() {
-        return (this.getY()+200);
+        return (this.getY() + 200);
+    }
+
+    public int changeWidth() {
+        Random rand = new Random();
+        int x = rand.nextInt(100);
+
+        return x+200;
+    }
+
+    public int changeHeight() {
+        Random rand = new Random();
+        int x = rand.nextInt(100);
+
+        return x+150;
+    }
+
+    public int changeVelocity() {
+        Random rand = new Random();
+        int x = rand.nextInt(10);
+
+        return -x-10;
     }
 }
