@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/txtJumpAndRun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="JUMP AND RUN"
+        android:textAlignment="center"
+        android:textSize="42sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/txtHighScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtJumpAndRun"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:text="High Score"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/txtHighScoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="0"
+        android:textSize="42sp"
+        android:layout_below="@+id/txtHighScore"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:background="@drawable/ball"
+        android:text="Play Jump And Run"
+        android:layout_marginBottom="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
