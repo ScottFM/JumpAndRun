@@ -28,6 +28,9 @@ public class Ball extends View{
     private Handler refreshHandler = new Handler();
     private long delay = 10;
 
+    private float direction;
+    private double dirRad;
+
     public Ball(Context context) {
         super(context);
         initializeBall();
@@ -104,5 +107,11 @@ public class Ball extends View{
     }
     public float getCornerY() {
         return (this.getY()+250);
+    }
+
+    public void rotate() {
+        direction = (direction + 8) % 360;
+        //dirRad = direction * Math.PI /180;
+        setRotation(direction);
     }
 }

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -21,6 +22,8 @@ public class ObstacleGround extends View {
     private int xVelocity;
     private Handler refreshHandler = new Handler();
     private long delay = 10;
+
+    FrameLayout mFrameLayout;
 
     public ObstacleGround(Context context) {
         super(context);
@@ -39,18 +42,39 @@ public class ObstacleGround extends View {
 
     public void initializeView() {
 
+        mFrameLayout = (FrameLayout)findViewById(R.id.content);
+
         x = 2000;
         y = 1700;
         this.xVelocity = -10;
 
-        setBackgroundResource(R.drawable.greenrectangle);
-        //refreshHandler.post(update);
+
+        Random rand = new Random();
+        int x = rand.nextInt(3);
+
+        switch(x) {
+            case 0:
+                setBackgroundResource(R.drawable.greenrectangle);
+                break;
+            case 1:
+                setBackgroundResource(R.drawable.bluerectangle);
+                break;
+            case 2:
+                setBackgroundResource(R.drawable.blackrectangle);
+                break;
+            /*case 3:
+                setBackgroundResource(R.drawable.bluerectangle);
+                break;
+            case 4:
+                setBackgroundResource(R.drawable.yellowrectangle);
+                break;*/
+
+        }
     }
 
     public void move() {
         x = x + xVelocity;
         setX(x);
-
     }
 
     public void setxVelocity(int xv) {
@@ -91,8 +115,18 @@ public class ObstacleGround extends View {
 
     public int changeVelocity() {
         Random rand = new Random();
-        int x = rand.nextInt(10);
+        int x = rand.nextInt(7);
 
-        return -x-10;
+        return -15-x;
     }
+
+    /*private Runnable moveObstacle = new Runnable(){
+        @Override
+        public void run(){
+
+            move();
+            invalidate();
+            refreshHandler.postDelayed(moveObstacle, delay);
+
+        }};*/
 }
