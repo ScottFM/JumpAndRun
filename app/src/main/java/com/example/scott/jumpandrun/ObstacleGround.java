@@ -1,6 +1,7 @@
 package com.example.scott.jumpandrun;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -19,6 +20,7 @@ public class ObstacleGround extends View {
 
     private int x;
     private int y;
+    private int width, height;
     private int xVelocity;
     private Handler refreshHandler = new Handler();
     private long delay = 10;
@@ -68,7 +70,6 @@ public class ObstacleGround extends View {
             case 4:
                 setBackgroundResource(R.drawable.yellowrectangle);
                 break;*/
-
         }
     }
 
@@ -92,41 +93,36 @@ public class ObstacleGround extends View {
     }
 
     public float getCornerX() {
-        return (this.getX() + 250);
+        return (this.getX() + this.width);
     }
 
     public float getCornerY() {
-        return (this.getY() + 200);
+        return (this.getY() + this.height);
     }
 
     public int changeWidth() {
         Random rand = new Random();
-        int x = rand.nextInt(100);
+        int x = rand.nextInt(300);
 
-        return x+200;
+        width = x+200;
+        return width;
     }
 
     public int changeHeight() {
         Random rand = new Random();
-        int x = rand.nextInt(100);
+        int x = rand.nextInt(250);
 
-        return x+150;
+        height = x + 150;
+        return height;
     }
 
-    public int changeVelocity() {
+    public int changeVelocity(int objectsCreated) {
         Random rand = new Random();
         int x = rand.nextInt(7);
+        int scale = objectsCreated/3;
 
-        return -15-x;
+        return -15-x-scale;
     }
 
-    /*private Runnable moveObstacle = new Runnable(){
-        @Override
-        public void run(){
 
-            move();
-            invalidate();
-            refreshHandler.postDelayed(moveObstacle, delay);
-
-        }};*/
 }
