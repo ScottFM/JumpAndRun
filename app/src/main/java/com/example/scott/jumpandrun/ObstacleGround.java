@@ -2,6 +2,7 @@ package com.example.scott.jumpandrun;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -18,8 +19,8 @@ import java.util.Random;
 
 public class ObstacleGround extends View {
 
-    private int x;
-    private int y;
+    private float x;
+    private float y;
     private int width, height;
     private int xVelocity;
     private Handler refreshHandler = new Handler();
@@ -48,6 +49,8 @@ public class ObstacleGround extends View {
 
         x = 2000;
         y = 1700;
+        height = changeHeight();
+        width = changeWidth();
         this.xVelocity = -10;
 
 
@@ -124,5 +127,8 @@ public class ObstacleGround extends View {
         return -15-x-scale;
     }
 
-
+    public RectF getRectangle() {
+        RectF rectF  = new RectF(this.x, this.y, this.getCornerX(), this.getCornerY());
+        return rectF;
+    }
 }

@@ -2,6 +2,8 @@ package com.example.scott.jumpandrun;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -15,6 +17,8 @@ public class Ball extends View{
 
     private float y;
     private float x;
+    private float width = 250;
+    private float height = 250;
 
     private int maxX;
     private int maxY;
@@ -113,5 +117,10 @@ public class Ball extends View{
         direction = (direction + 8) % 360;
         //dirRad = direction * Math.PI /180;
         setRotation(direction);
+    }
+
+    public RectF getRectangle() {
+        RectF rectF  = new RectF(this.x+10,this.y+10,this.getCornerX()-10, this.getCornerY()-10);
+        return rectF;
     }
 }
